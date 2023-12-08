@@ -13,8 +13,10 @@ namespace StoreBLL.Services
 {
     public class ProductTitleService : AbstractService, ICrud
     {
+        private readonly IProductTitleRepository repository;
         public ProductTitleService(StoreDbContext context) : base(context)
         {
+            this.repository = new ProductTitleRepository(context);
         }
 
         public void Add(AbstractModel model)

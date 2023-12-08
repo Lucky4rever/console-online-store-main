@@ -14,6 +14,11 @@ namespace StoreBLL.Services
 {
     public class OrderStateService : AbstractService, ICrud
     {
+        private readonly IOrderStateRepository repository;
+        public OrderStateService(StoreDbContext context) : base(context)
+        {
+            this.repository = new OrderStateRepository(context);
+        }
         public void Add(AbstractModel model)
         {
             var x = (OrderStateModel)model;

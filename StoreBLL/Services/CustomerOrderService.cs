@@ -14,33 +14,33 @@ namespace StoreBLL.Services
 {
     public class CustomerOrderService : ICrud
     {
-        private readonly ICustomerOrderRepository _customerOrderRepository;
+        private readonly ICustomerOrderRepository repository;
         public CustomerOrderService(StoreDbContext context)
         {
-            this._customerOrderRepository = new CustomerOrderRepository(context);
+            this.repository = new CustomerOrderRepository(context);
         }
         public void Add(AbstractModel model)
         {
             var x = (CustomerOrderModel)model;
-            _customerOrderRepository.Add(new CustomerOrder(x.Id, x.OrderDate, x.CustomerId, x.OrderStateId));
+            repository.Add(new CustomerOrder(x.Id, x.OrderDate, x.CustomerId, x.OrderStateId));
         }
         public void Delete(int modelId)
         {
-            _customerOrderRepository.DeleteById(modelId);
+            repository.DeleteById(modelId);
         }
         public IEnumerable<AbstractModel> GetAll()
         {
-            return _customerOrderRepository.GetAll().Select(x => new CustomerOrderModel(x.Id, x.OrderDate, x.CustomerId, x.OrderStateId));
+            return repository.GetAll().Select(x => new CustomerOrderModel(x.Id, x.OrderDate, x.CustomerId, x.OrderStateId));
         }
         public AbstractModel GetById(int id)
         {
-            var res = _customerOrderRepository.GetById(id);
+            var res = repository.GetById(id);
             return new CustomerOrderModel(res.Id, res.OrderDate, res.CustomerId, res.OrderStateId);
         }
         public void Update(AbstractModel model)
         {
             var x = (CustomerOrderModel)model;
-            _customerOrderRepository.Update(new CustomerOrder(x.Id, x.OrderDate, x.CustomerId, x.OrderStateId));
+            repository.Update(new CustomerOrder(x.Id, x.OrderDate, x.CustomerId, x.OrderStateId));
         }
     }
 }

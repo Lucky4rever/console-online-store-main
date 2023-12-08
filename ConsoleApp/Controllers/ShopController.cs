@@ -69,7 +69,6 @@ namespace ConsoleApp.Services
             menu.Run();
         }
 
-
         public static void ShowAllOrderDetails()
         {
             var service = new OrderDetailsService(context);

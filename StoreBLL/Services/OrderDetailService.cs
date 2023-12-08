@@ -13,8 +13,10 @@ namespace StoreBLL.Services
 {
     public class OrderDetailService : AbstractService, ICrud
     {
+        private readonly IOrderDetailRepository repository;
         public OrderDetailService(StoreDbContext context)
         {
+            this.repository = new OrderDetailRepository(context);
         }
 
         public void Add(AbstractModel model)

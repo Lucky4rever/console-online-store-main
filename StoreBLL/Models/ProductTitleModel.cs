@@ -8,19 +8,17 @@ namespace StoreBLL.Models
     {
         public string Title { get; set; }
         public string Description { get; set; }
-        public decimal Price { get; set; }
-        public string Image { get; set; }
+        public int CategoryId { get; set; }
 
-        public ProductTitleModel(int id, string title, string description, decimal price, string image):base(id)
+        public ProductTitleModel(int id, string title, string description, int categoryId) : base(id)
         {
             this.Title = title;
             this.Description = description;
-            this.Price = price;
-            this.Image = image;
+            this.CategoryId = categoryId;
         }
         public override string ToString()
         {
-            return $"Id:{Id} Title:{Title} Description:{Description} Price:{Price} Image:{Image}";
+            return $"Id:{Id} Title:{Title} Description:{Description} CategoryId:{CategoryId}";
         }
     }
 }

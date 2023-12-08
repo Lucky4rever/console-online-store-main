@@ -6,21 +6,21 @@ namespace StoreBLL.Models
 {
     public class ProductModel : AbstractModel
     {
-        public string Name { get; set; }
+        public string Description { get; set; }
         public decimal Price { get; set; }
         public int ManufacturerId { get; set; }
-        public int CategoryId { get; set; }
+        public int TitleId { get; set; }
 
-        public ProductModel(int id, string name, decimal price, int manufacturerId, int categoryId):base(id)
+        public ProductModel(int id, string description, decimal price, int manufacturerId, int titleId):base(id)
         {
-            this.Name = name;
+            this.Description = description;
             this.Price = price;
             this.ManufacturerId = manufacturerId;
-            this.CategoryId = categoryId;
+            this.TitleId = TitleId;
         }
         public override string ToString()
         {
-            return $"Id:{Id} Name:{Name} Price:{Price} ManufacturerId:{ManufacturerId} CategoryId:{CategoryId}";
+            return $"Id:{Id} Description:{Description} Price:{Price} ManufacturerId:{ManufacturerId} TitleId:{TitleId}";
         }
     }
 }

@@ -15,8 +15,10 @@ namespace StoreBLL.Services
 {
     public class UserRoleService : AbstractService, ICrud
     {
+        private readonly IUserRoleRepository repository;
         public UserRoleService(StoreDbContext context) : base(context)
         {
+            this.repository = new UserRoleRepository(context);
         }
         public void Add(AbstractModel model)
         {

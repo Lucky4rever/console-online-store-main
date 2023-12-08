@@ -12,10 +12,10 @@ namespace ConsoleApp.Helpers
         public static CategoryModel ReadCategoryModel()
         {
             Console.WriteLine("Input Category Id");
-            var id=int.Parse(Console.ReadLine());
+            var id = int.Parse(Console.ReadLine());
             Console.WriteLine("Input Category Name");
             var name = Console.ReadLine();
-            return new CategoryModel(id,name);
+            return new CategoryModel(id, name);
         }   
 
         public static ManufacturerModel ReadManufacturerModel()
@@ -45,6 +45,34 @@ namespace ConsoleApp.Helpers
             return new UserRoleModel(id, name);
         }
 
+        public static UserModel ReadUserModel()
+        {
+            Console.WriteLine("Input User Id");
+            var id = int.Parse(Console.ReadLine());
+            Console.WriteLine("Input User Name");
+            var name = Console.ReadLine();
+            Console.WriteLine("Input User Password");
+            var password = Console.ReadLine();
+            Console.WriteLine("Input User Role Id");
+            var roleId = int.Parse(Console.ReadLine());
+            return new UserModel(id, name, password, roleId);
+        }
+
+        public static ProductModel ReadProductModel()
+        {
+            Console.WriteLine("Input Product Id");
+            var id = int.Parse(Console.ReadLine());
+            Console.WriteLine("Input Product Name");
+            var name = Console.ReadLine();
+            Console.WriteLine("Input Product Price");
+            var price = decimal.Parse(Console.ReadLine());
+            Console.WriteLine("Input Product Category Id");
+            var categoryId = int.Parse(Console.ReadLine());
+            Console.WriteLine("Input Product Manufacturer Id");
+            var manufacturerId = int.Parse(Console.ReadLine());
+            return new ProductModel(id, name, price, categoryId, manufacturerId);
+        }
+
         public static ProductTitleModel ReadProductTitleModel()
         {
             Console.WriteLine("Input Product Title Id");
@@ -54,23 +82,17 @@ namespace ConsoleApp.Helpers
             return new ProductTitleModel(id, name);
         }
 
-        public static ProductModel ReadProductModel()
+        public static OrderModel ReadOrderModel()
         {
-            Console.WriteLine("Input Product Id");
+            Console.WriteLine("Input Order Id");
             var id = int.Parse(Console.ReadLine());
-            Console.WriteLine("Input Product Title Id");
-            var titleId = int.Parse(Console.ReadLine());
-            Console.WriteLine("Input Product Manufacturer Id");
-            var manufacturerId = int.Parse(Console.ReadLine());
-            Console.WriteLine("Input Product Category Id");
-            var categoryId = int.Parse(Console.ReadLine());
-            Console.WriteLine("Input Product Price");
-            var price = decimal.Parse(Console.ReadLine());
-            Console.WriteLine("Input Product Quantity");
-            var quantity = int.Parse(Console.ReadLine());
-            return new ProductModel(id, titleId, manufacturerId, categoryId, price, quantity);
+            Console.WriteLine("Input Order User Id");
+            var userId = int.Parse(Console.ReadLine());
+            Console.WriteLine("Input Order State Id");
+            var stateId = int.Parse(Console.ReadLine());
+            return new OrderModel(id, userId, stateId);
         }
-        
+
         public static OrderDetailModel ReadOrderDetailModel()
         {
             Console.WriteLine("Input Order Detail Id");
@@ -82,44 +104,6 @@ namespace ConsoleApp.Helpers
             Console.WriteLine("Input Order Detail Quantity");
             var quantity = int.Parse(Console.ReadLine());
             return new OrderDetailModel(id, orderId, productId, quantity);
-        }
-
-        public static CustomerOrderModel ReadCustomerOrderModel()
-        {
-            Console.WriteLine("Input Customer Order Id");
-            var id = int.Parse(Console.ReadLine());
-            Console.WriteLine("Input Customer Order User Id");
-            var userId = int.Parse(Console.ReadLine());
-            Console.WriteLine("Input Customer Order Order State Id");
-            var orderStateId = int.Parse(Console.ReadLine());
-            Console.WriteLine("Input Customer Order Order Date");
-            var orderDate = DateTime.Parse(Console.ReadLine());
-            Console.WriteLine("Input Customer Order Delivery Date");
-            var deliveryDate = DateTime.Parse(Console.ReadLine());
-            Console.WriteLine("Input Customer Order Delivery Address");
-            var deliveryAddress = Console.ReadLine();
-            return new CustomerOrderModel(id, userId, orderStateId, orderDate, deliveryDate, deliveryAddress);
-        }
-
-        public static UserModel ReadUserModel()
-        {
-            Console.WriteLine("Input User Id");
-            var id = int.Parse(Console.ReadLine());
-            Console.WriteLine("Input User User Role Id");
-            var userRoleId = int.Parse(Console.ReadLine());
-            Console.WriteLine("Input User Login");
-            var login = Console.ReadLine();
-            Console.WriteLine("Input User Password");
-            var password = Console.ReadLine();
-            Console.WriteLine("Input User First Name");
-            var firstName = Console.ReadLine();
-            Console.WriteLine("Input User Last Name");
-            var lastName = Console.ReadLine();
-            Console.WriteLine("Input User Email");
-            var email = Console.ReadLine();
-            Console.WriteLine("Input User Phone");
-            var phone = Console.ReadLine();
-            return new UserModel(id, userRoleId, login, password, firstName, lastName, email, phone);
         }
     }
 }

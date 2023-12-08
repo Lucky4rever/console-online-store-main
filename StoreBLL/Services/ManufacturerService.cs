@@ -13,8 +13,10 @@ namespace StoreBLL.Services
 {
     public class ManufacturerService : AbstractService, ICrud
     {
+        private readonly IManufacturerRepository _manufacturerRepository;
         public ManufacturerService(StoreDbContext context)
         {
+            this.repository = new ManufacturerRepository(context);
         }
         public void Add(AbstractModel model)
         {

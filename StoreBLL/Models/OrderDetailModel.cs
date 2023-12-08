@@ -8,17 +8,19 @@ namespace StoreBLL.Models
     {
         public int OrderId { get; set; }
         public int ProductId { get; set; }
-        public int Quantity { get; set; }
+        public decimal Price { get; set; }
+        public int ProductAmount { get; set; }
 
-        public OrderDetailModel(int id, int orderId, int productId, int quantity):base(id)
+        public OrderDetailModel(int id, int orderId, int productId, decimal price, int amount) : base(id)
         {
             this.OrderId = orderId;
             this.ProductId = productId;
-            this.Quantity = quantity;
+            this.Price = price;
+            this.ProductAmount = amount;
         }
         public override string ToString()
         {
-            return $"Id:{Id} OrderId:{OrderId} ProductId:{ProductId} Quantity:{Quantity}";
+            return $"Id:{Id} OrderId:{OrderId} ProductId:{ProductId} Price:{Price} Product Amount:{ProductAmount}";
         }
     }
 }

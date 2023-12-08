@@ -13,8 +13,10 @@ namespace StoreBLL.Services
 {
     public class UserService : AbstractService, ICrud
     {
+        private readonly IUserRepository repository;
         public UserService(StoreDbContext context) : base(context)
         {
+            this.repository = new UserRepository(context);
         }
         public void Add(AbstractModel model)
         {
