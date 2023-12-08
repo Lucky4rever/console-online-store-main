@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using StoreDAL.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace StoreDAL.Repository
 {
@@ -14,6 +15,10 @@ namespace StoreDAL.Repository
         private readonly DbSet<ProductTitle> dbSet;
         public ProductTitleRepository(StoreDbContext context) : base(context)
         {
+            if (context == null)
+            {
+                throw new ArgumentNullException(null);
+            }
             dbSet = context.Set<ProductTitle>();
         }
         public void Add(ProductTitle entity)
@@ -43,14 +48,19 @@ namespace StoreDAL.Repository
             return dbSet.ToList();
         }
 
-        public IEnumerable<ProductTitle> GetAll(int pageNumber, int rowCount)
+        public IEnumerable<ProductTitle> GetAll(int pageNumber, int RowCount)
         {
-            return dbSet.Skip((pageNumber - 1) * rowCount).Take(rowCount).ToList();
+            return dbSet.Skip((pageNumber - 1) * RowCount).Take(RowCount).ToList();
         }
 
         public ProductTitle GetById(int id)
         {
-            return dbSet.Find(id);
+            var x = dbSet.Find(id);
+            if (x == null)
+            {
+                throw new ArgumentNullException(null);
+            }
+            return x;
         }
 
         public void Update(ProductTitle entity)

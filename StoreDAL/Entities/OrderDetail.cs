@@ -19,9 +19,15 @@ namespace StoreDAL.Entities
         public CustomerOrder Order { get; set; }
         public Product Product { get; set; }
 
-        public OrderDetail() : base() { }
+        public OrderDetail() : base()
+        {
+            this.Order = new();
+            this.Product = new();
+        }
         public OrderDetail(int id, int orderId, int productId, decimal price, int amount) : base(id)
         {
+            this.Order = new();
+            this.Product = new();
             this.OrderId = orderId;
             this.ProductId = productId;
             this.Price = price;

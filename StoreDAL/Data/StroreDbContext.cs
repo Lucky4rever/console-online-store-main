@@ -32,15 +32,18 @@ namespace StoreDAL.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Category>().HasData(factory.GetCategoryData());
-            modelBuilder.Entity<Manufacturer>().HasData(factory.GetManufacturerData());
-            modelBuilder.Entity<OrderState>().HasData(factory.GetOrderStateData());
-            modelBuilder.Entity<UserRole>().HasData(factory.GetUserRoleData());
-            modelBuilder.Entity<User>().HasData(factory.GetUserData());
-            modelBuilder.Entity<ProductTitle>().HasData(factory.GetProductTitleData());
-            modelBuilder.Entity<Product>().HasData(factory.GetProductData());
-            modelBuilder.Entity<CustomerOrder>().HasData(factory.GetCustomerOrderData());
-            modelBuilder.Entity<OrderDetail>().HasData(factory.GetOrderDetailData());
+            if (modelBuilder != null)
+            {
+                modelBuilder.Entity<Category>().HasData(factory.GetCategoryData());
+                modelBuilder.Entity<Manufacturer>().HasData(factory.GetManufacturerData());
+                modelBuilder.Entity<OrderState>().HasData(factory.GetOrderStateData());
+                modelBuilder.Entity<UserRole>().HasData(factory.GetUserRoleData());
+                modelBuilder.Entity<User>().HasData(factory.GetUserData());
+                modelBuilder.Entity<ProductTitle>().HasData(factory.GetProductTitleData());
+                modelBuilder.Entity<Product>().HasData(factory.GetProductData());
+                modelBuilder.Entity<CustomerOrder>().HasData(factory.GetCustomerOrderData());
+                modelBuilder.Entity<OrderDetail>().HasData(factory.GetOrderDetailData());
+            }
         }
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{

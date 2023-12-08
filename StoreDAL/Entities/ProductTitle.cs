@@ -12,11 +12,18 @@ namespace StoreDAL.Entities
         [Column("category_id")]
         public int CategoryId { get; set; }
         public Category Category { get; set; }
-        public virtual IList<Product> Products { get; set; }
+        public virtual IList<Product> Products { get; }
 
-        public ProductTitle() : base() { }
+        public ProductTitle() : base()
+        {
+            this.Category = new();
+            this.Products = new List<Product>();
+            this.Title = "";
+        }
         public ProductTitle(int id, string title, int categoryId) : base(id)
         {
+            this.Category = new();
+            this.Products = new List<Product>();
             this.Title = title;
             this.CategoryId = categoryId;
         }

@@ -15,6 +15,10 @@ namespace StoreDAL.Repository
         private readonly DbSet<OrderState> dbSet;
         public OrderStateRepository(StoreDbContext context) : base(context)
         {
+            if (context == null)
+            {
+                throw new ArgumentNullException(null);
+            }
             dbSet = context.Set<OrderState>();
         }
         public void Add(OrderState entity)
@@ -44,14 +48,19 @@ namespace StoreDAL.Repository
             return dbSet.ToList();
         }
 
-        public IEnumerable<OrderState> GetAll(int pageNumber, int rowCount)
+        public IEnumerable<OrderState> GetAll(int pageNumber, int RowCount)
         {
-            return dbSet.Skip((pageNumber - 1) * rowCount).Take(rowCount).ToList();
+            return dbSet.Skip((pageNumber - 1) * RowCount).Take(RowCount).ToList();
         }
 
         public OrderState GetById(int id)
         {
-            return dbSet.Find(id);
+            var x = dbSet.Find(id);
+            if (x == null)
+            {
+                throw new ArgumentNullException(null);
+            }
+            return x;
         }
 
         public void Update(OrderState entity)

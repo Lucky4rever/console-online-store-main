@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace StoreDAL.Entities
 {
@@ -24,11 +25,21 @@ namespace StoreDAL.Entities
         public int RoleId { get; set; }
 
         public UserRole Role { get; set; }
-        public virtual IList<CustomerOrder> Order { get; set; }
-        public User() : base() { }
+        public virtual IList<CustomerOrder> Order { get; }
+        public User() : base()
+        {
+            this.Role = new();
+            this.Order = new List<CustomerOrder>();
+            this.Name = "";
+            this.LastName = "";
+            this.Login = "";
+            this.Password = "";
+        }
 
         public User(int id, string name, string lastName, string login, string password, int roleId) : base(id)
         {
+            this.Role = new();
+            this.Order = new List<CustomerOrder>();
             this.Name = name;
             this.LastName = lastName;
             this.Login = login;

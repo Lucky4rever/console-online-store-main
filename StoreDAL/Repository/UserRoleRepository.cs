@@ -15,6 +15,10 @@ namespace StoreDAL.Repository
         private readonly DbSet<UserRole> dbSet;
         public UserRoleRepository(StoreDbContext context) : base(context)
         {
+            if (context == null)
+            {
+                throw new ArgumentNullException(null);
+            }
             dbSet = context.Set<UserRole>();
         }
         public void Add(UserRole entity)
@@ -51,7 +55,12 @@ namespace StoreDAL.Repository
 
         public UserRole GetById(int id)
         {
-            return dbSet.Find(id);
+            var x = dbSet.Find(id);
+            if (x == null)
+            {
+                throw new ArgumentNullException(null);
+            }
+            return x;
         }
 
         public void Update(UserRole entity)

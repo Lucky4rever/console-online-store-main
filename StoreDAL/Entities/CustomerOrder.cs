@@ -21,11 +21,20 @@ namespace StoreDAL.Entities
 
         public User User { get; set; }
         public OrderState State { get; set; }
-        public virtual IList<OrderDetail> Details { get; set; }
+        public virtual IList<OrderDetail> Details { get; }
 
-        public CustomerOrder():base() { }
+        public CustomerOrder():base()
+        {
+            this.User = new User();
+            this.State = new OrderState();
+            this.Details = new List<OrderDetail>();
+            this.OperationTime = "";
+        }
         public CustomerOrder(int id, string operationTime, int userId, int orderStateId) : base(id)
         {
+            this.User = new User();
+            this.State = new OrderState();
+            this.Details = new List<OrderDetail>();
             this.OperationTime = operationTime;
             this.UserId = userId;
             this.OrderStateId = orderStateId;

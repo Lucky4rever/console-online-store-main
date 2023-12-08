@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using StoreDAL.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace StoreDAL.Repository
 {
@@ -14,17 +15,21 @@ namespace StoreDAL.Repository
         private readonly DbSet<Manufacturer> dbSet;
         public ManufacturerRepository(StoreDbContext context) : base(context)
         {
+            if (context == null)
+            {
+                throw new ArgumentNullException(null);
+            }
             dbSet = context.Set<Manufacturer>();
         }
         public void Add(Manufacturer entity)
         {
-            dbSet.Manufacturers.Add(entity);
+            dbSet.Add(entity);
             context.SaveChanges();
         }
 
         public void Delete(Manufacturer entity)
         {
-            dbSet.Manufacturers.Remove(entity);
+            dbSet.Remove(entity);
             context.SaveChanges();
         }
 
@@ -40,22 +45,27 @@ namespace StoreDAL.Repository
 
         public IEnumerable<Manufacturer> GetAll()
         {
-            return dbSet.Manufacturers.ToList();
+            return dbSet.ToList();
         }
 
-        public IEnumerable<Manufacturer> GetAll(int pageNumber, int rowCount)
+        public IEnumerable<Manufacturer> GetAll(int pageNumber, int RowCount)
         {
-            return dbSet.Manufacturers.Skip((pageNumber - 1) * rowCount).Take(rowCount).ToList();
+            return dbSet.Skip((pageNumber - 1) * RowCount).Take(RowCount).ToList();
         }
 
         public Manufacturer GetById(int id)
         {
-            return dbSet.Manufacturers.Find(id);
+            var x = dbSet.Find(id);
+            if (x == null)
+            {
+                throw new ArgumentNullException(null);
+            }
+            return x;
         }
 
         public void Update(Manufacturer entity)
         {
-            dbSet.Manufacturers.Update(entity);
+            dbSet.Update(entity);
             context.SaveChanges();
         }
     }

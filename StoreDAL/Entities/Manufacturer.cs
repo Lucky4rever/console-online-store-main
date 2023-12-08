@@ -9,7 +9,10 @@ namespace StoreDAL.Entities
     {
         [Column("manufacturer_name")]
         public string Name { get; set; }
-        public Manufacturer() : base() { }
+        public Manufacturer() : base()
+        {
+            this.Name = "";
+        }
         public Manufacturer(int id, string name) : base(id)
         {
             this.Name = name;

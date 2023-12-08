@@ -12,10 +12,15 @@ namespace StoreDAL.Entities
     {
         [Column("user_role_name")]
         public string RoleName { get; set; }
-        public virtual IList<User> User { get; set; }
-        public UserRole() { }
+        public virtual IList<User> User { get; }
+        public UserRole()
+        {
+            this.User = new List<User>();
+            this.RoleName = "";
+        }
         public UserRole(int id, string roleName) : base(id)
         {
+            this.User = new List<User>();
             this.RoleName = roleName;
         }
     }

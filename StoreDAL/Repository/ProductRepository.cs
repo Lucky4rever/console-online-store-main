@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using StoreDAL.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace StoreDAL.Repository
 {
@@ -14,17 +15,21 @@ namespace StoreDAL.Repository
         private readonly DbSet<Product> dbSet;
         public ProductRepository(StoreDbContext context) : base(context)
         {
+            if (context == null)
+            {
+                throw new ArgumentNullException(null);
+            }
             dbSet = context.Set<Product>();
         }
         public void Add(Product entity)
         {
-            dbSet.Products.Add(entity);
+            dbSet.Add(entity);
             context.SaveChanges();
         }
 
         public void Delete(Product entity)
         {
-            dbSet.Products.Remove(entity);
+            dbSet.Remove(entity);
             context.SaveChanges();
         }
 
@@ -40,22 +45,27 @@ namespace StoreDAL.Repository
 
         public IEnumerable<Product> GetAll()
         {
-            return dbSet.Products.ToList();
+            return dbSet.ToList();
         }
 
-        public IEnumerable<Product> GetAll(int pageNumber, int rowCount)
+        public IEnumerable<Product> GetAll(int pageNumber, int RowCount)
         {
-            return dbSet.Products.Skip((pageNumber - 1) * rowCount).Take(rowCount).ToList();
+            return dbSet.Skip((pageNumber - 1) * RowCount).Take(RowCount).ToList();
         }
 
         public Product GetById(int id)
         {
-            return dbSet.Products.Find(id);
+            var x = dbSet.Find(id);
+            if (x == null)
+            {
+                throw new ArgumentNullException(null);
+            }
+            return x;
         }
 
         public void Update(Product entity)
         {
-            dbSet.Products.Update(entity);
+            dbSet.Update(entity);
             context.SaveChanges();
         }
     }

@@ -23,10 +23,19 @@ namespace StoreDAL.Entities
         public string Description { get; set; }
         public ProductTitle Title { get; set; }
         public Manufacturer Manufacturer { get; set; }
-        public virtual IList<OrderDetail> OrderDetails { get; set; }
-        public Product() : base() { }
+        public virtual IList<OrderDetail> OrderDetails { get; }
+        public Product() : base()
+        {
+            this.Title = new();
+            this.Manufacturer = new();
+            this.OrderDetails = new List<OrderDetail>();
+            this.Description = "";
+        }
         public Product(int id, int titleId, int manufacturerId, string description, decimal price) : base(id)
         {
+            this.Title = new();
+            this.Manufacturer = new();
+            this.OrderDetails = new List<OrderDetail>();
             this.TitleId = titleId;
             this.ManufacturerId = manufacturerId;
             this.Description = description;
